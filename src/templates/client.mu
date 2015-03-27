@@ -5,12 +5,15 @@
         <link rel="stylesheet" href="css/font-awesome.css">
     </head>
     <body class="peers-0">
-        <div id="remotes"></div>
 
         <div id="avatar" title="Mute microphone">
             <video id="local" autoplay="autoplay" muted="true" class="local"></video>
             <span class="mute-icon fa fa-microphone-slash fa-4x"></span>
         </div>
+
+        <div id="remotes-unfocused"></div>
+
+        <div id="remotes"></div>
 
         <div class="toolbar">
           <button id="orientation-switch" class="orientation-switch">
