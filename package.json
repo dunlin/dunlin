@@ -1,0 +1,41 @@
+{
+  "name": "video-chat",
+  "description": "video chat in a box",
+  "preferGlobal": true,
+  "version": "0.0.1",
+  "dependencies": {
+    "browserify": "^9.0.3",
+    "colors": "^1.0.3",
+    "commander": "^2.6.0",
+    "express": "^4.12.0",
+    "font-awesome": "^4.3.0",
+    "jquery": "^2.1.3",
+    "less": "^2.4.0",
+    "mustache": "^1.1.0",
+    "node-uuid": "^1.4.2",
+    "pem": "^1.7.1",
+    "simplewebrtc": "^1.15.2",
+    "socket.io": "0.9.16"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "postinstall": "npm run build",
+    "build": "npm run build-js & npm run build-less & npm run copy-fontawesome & wait",
+    "build-js": "./node_modules/.bin/browserify src/js/client.js -o client/client.js",
+    "build-less": "./node_modules/.bin/lessc src/less/style.less client/css/style.css",
+    "develop-less": "./node_modules/.bin/supervisor -w src -e less -n exit  -x npm --  run build-less",
+    "develop-js": "./node_modules/.bin/watchify src/js/client.js -o client/client.js --debug --verbose",
+    "copy-fontawesome": "mkdir -p client/css && cp ./node_modules/font-awesome/css/font-awesome.min.css ./client/css/font-awesome.css && cp -R ./node_modules/font-awesome/fonts/ ./client/fonts/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alexander-heimbuch/video-chat.git"
+  },
+  "devDependencies": {
+    "supervisor": "^0.6.0",
+    "watchify": "^2.4.0"
+  },
+  "bin": {
+    "video-chat": "index.js"
+  }
+}
