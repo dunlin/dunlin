@@ -21,18 +21,13 @@ module.exports = function () {
     });
 
     webrtc.on('videoAdded', function (video, peer) {
-        var $remotes = $('#remotes'),
-            $videoContainer = $('<div class="video-container"><div class="mute-trigger"><span class="mute-icon fa fa-volume-off fa-4x"></span></div></div>');
+        var $videoContainer = $('<div class="video-container"><div class="triggers"><div class="trigger mute-trigger"><span class="mute-icon fa fa-volume-off fa-4x"></span></div><div class="trigger focus-trigger"><span class="focus-icon fa fa-expand fa-4x"></span></div></div><div class="dimmer"></div></div>');
+        $videoContainer.append(video);
 
-        $videoContainer.prepend(video);
-        $remotes.append($videoContainer);
-
-        streams.add(peer.id, video);
+        streams.add(peer.id, video, $videoContainer);
     });
 
     webrtc.on('videoRemoved', function (video, peer) {
-        $(video).parent().remove();
-
         streams.remove(peer.id);
     });
 
