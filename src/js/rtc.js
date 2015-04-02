@@ -1,5 +1,6 @@
 var $ = require('jquery'),
-    SimpleWebRTC = require('simplewebrtc');
+    SimpleWebRTC = require('simplewebrtc'),
+    videoContainerTemplate = require('../templates/video-container.hbs');
 
 module.exports = function () {
     var webrtc = new SimpleWebRTC({
@@ -21,9 +22,10 @@ module.exports = function () {
     });
 
     webrtc.on('videoAdded', function (video, peer) {
-        var $videoContainer = $('<div class="video-container"><div class="triggers"><div class="trigger mute-trigger"><span class="mute-icon fa fa-volume-off fa-4x"></span></div><div class="trigger focus-trigger"><span class="focus-icon fa fa-expand fa-4x"></span></div></div><div class="dimmer"></div></div>');
-        $videoContainer.append(video);
+        var $remotes = $('#remotes'),
+            $videoContainer = $(videoContainerTemplate());
 
+        $videoContainer.append(video);
         streams.add(peer.id, video, $videoContainer);
     });
 

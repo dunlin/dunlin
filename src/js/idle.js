@@ -24,4 +24,4 @@ module.exports = function(target) {
 
 	$(target).on('mousemove', activity($target));
 	$(target).on('click', activity($target));
-}
+};
