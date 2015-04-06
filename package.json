@@ -13,12 +13,17 @@
     "less": "^2.4.0",
     "mustache": "^1.1.0",
     "node-uuid": "^1.4.2",
+    "nodemon": "^1.3.7",
     "pem": "^1.7.1",
     "simplewebrtc": "^1.15.2",
     "socket.io": "0.9.16"
   },
   "scripts": {
     "start": "node index.js",
+    "dev": "npm run build & npm run watch-js & npm run watch-less & npm run watch-server",
+    "watch-less": "./node_modules/nodemon/bin/nodemon.js --watch src/less/*.less --ext less --exec 'npm run build-less'",
+    "watch-js": "./node_modules/nodemon/bin/nodemon.js --watch src/js/*.js --watch index.js --ext less --exec 'npm run build-js'",
+    "watch-server": "./node_modules/nodemon/bin/nodemon.js --ignore client index.js",
     "postinstall": "npm run build",
     "build": "npm run build-js & npm run build-less & npm run copy-fontawesome & wait",
     "build-js": "./node_modules/.bin/browserify src/js/client.js -o client/client.js",
