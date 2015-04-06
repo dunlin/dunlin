@@ -3,8 +3,9 @@ var colors = require('colors/safe'),
     app = express(),
     os = require('os'),
     fs = require('fs'),
-    mustache = require('mustache'),
-    layout = fs.readFileSync(process.cwd() + '/src/templates/client.mu', 'utf8'),
+    path = require('path'),
+    handlebars = require('handlebars'),
+    layout = handlebars.compile(fs.readFileSync(path.resolve(__dirname, 'src/templates/client.hbs'), 'utf8')),
     port = parseInt(process.env.PORT_HTTP) || 8080;
 
 module.exports = function (connectionServer, options) {
@@ -22,7 +23,7 @@ module.exports = function (connectionServer, options) {
     });
 
     app.get('/:room', function (req, res, next) {
-        res.send(mustache.render(layout, {
+        res.send(layout({
             'connectionServer': connectionServer,
             'room': req.room
         }));
