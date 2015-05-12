@@ -1,5 +1,5 @@
 {
-  "name": "video-chat",
+  "name": "dunlin",
   "description": "video chat in a box",
   "preferGlobal": true,
   "version": "0.0.1",
@@ -35,7 +35,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/alexander-heimbuch/video-chat.git"
+    "url": "git://github.com/dunlin/dunlin.git"
   },
   "devDependencies": {
     "supervisor": "^0.6.0",
