@@ -16,8 +16,7 @@
     "node-uuid": "^1.4.2",
     "nodemon": "^1.3.7",
     "pem": "^1.7.1",
-    "simplewebrtc": "^1.15.2",
-    "socket.io": "0.9.16"
+    "simplewebrtc": "^1.15.2"
   },
   "scripts": {
     "start": "node index.js",
