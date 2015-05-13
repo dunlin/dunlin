@@ -1,12 +1,10 @@
 #!/usr/bin/env node
 
-var uuid = require('node-uuid'),
-    cli = require('commander'),
+var cli = require('commander'),
     pem = require('pem'),
-    signalingServer = require('./signaling-server'),
     httpServer = require('./http-server'),
     start = function (options) {
-        httpServer(signalingServer(options), options);
+        httpServer(options);
     };
 
 cli

@@ -8,7 +8,7 @@ var colors = require('colors/safe'),
     layout = handlebars.compile(fs.readFileSync(path.resolve(__dirname, 'src/templates/client.hbs'), 'utf8')),
     port = parseInt(process.env.PORT_HTTP) || 8080;
 
-module.exports = function (connectionServer, options) {
+module.exports = function (options) {
     // Define the static shares
     app.use(express.static(process.cwd() + '/client'));
 
@@ -24,7 +24,7 @@ module.exports = function (connectionServer, options) {
 
     app.get('/:room', function (req, res, next) {
         res.send(layout({
-            'connectionServer': connectionServer,
+            'connectionServer': process.env.SIGNALING_SERVER,
             'room': req.room
         }));
         next();
