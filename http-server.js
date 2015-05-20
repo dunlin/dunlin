@@ -6,7 +6,7 @@ var colors = require('colors/safe'),
     path = require('path'),
     handlebars = require('handlebars'),
     layout = handlebars.compile(fs.readFileSync(path.resolve(__dirname, 'src/templates/client.hbs'), 'utf8')),
-    port = parseInt(process.env.PORT_HTTP) || 8080;
+    port = parseInt(process.env.HTTP_PORT) || 8001;
 
 module.exports = function (options) {
     // Define the static shares

@@ -10,4 +10,4 @@ RUN npm install && npm run build
 
 CMD node index
 
-EXPOSE 8080
+EXPOSE 8001
