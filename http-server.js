@@ -5,6 +5,8 @@ var colors = require('colors/safe'),
     fs = require('fs'),
     path = require('path'),
     handlebars = require('handlebars'),
+    moniker = require('moniker'),
+    names = moniker.generator([moniker.adjective, moniker.noun]),
     layout = handlebars.compile(fs.readFileSync(path.resolve(__dirname, 'src/templates/client.hbs'), 'utf8')),
     port = parseInt(process.env.HTTP_PORT) || 8001;
 
@@ -18,7 +20,7 @@ module.exports = function (options) {
     });
 
     app.get('/', function (req, res, next) {
-        res.redirect('/' + require('node-uuid')());
+        res.redirect('/' + names.choose());
         res.end();
     });
 
