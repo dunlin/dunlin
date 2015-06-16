@@ -1,0 +1,58 @@
+//
+// Current user video
+#avatar {
+  position: fixed;
+  top: 2em;
+  right: 2em;
+  width: @avatar-size;
+  height: @avatar-size;
+  border-radius: 100%;
+  background-color: #111;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 0 solid #fff;
+  z-index: @z-index-top;
+
+  video {
+    max-width: 135%;
+    margin-left: -17%;
+  }
+
+  &.muted {
+    .mute-icon {
+      display: block;
+      color: #c00;
+    }
+
+    video {
+      opacity: 0.5;
+    }
+  }
+
+  .mute-icon {
+    color: white;
+    text-align: center;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s;
+  }
+
+  &:hover {
+    border-width: .5em;
+
+    .mute-icon {
+      opacity: 1;
+    }
+  }
+}
+
+.peers-1, .peers-0 {
+  #avatar {
+    width: @avatar-size-large;
+    height: @avatar-size-large;
+  }
+}

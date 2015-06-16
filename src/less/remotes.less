@@ -1,0 +1,59 @@
+//
+// People the current user is talking with
+#remotes {
+  line-height: 0;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+[class^="peers"],
+[class*=" peers"] {
+  .video-container {
+    flex: 1;
+  }
+}
+
+.video-container {
+  display: block;
+  position: relative;
+  height: 0;
+  overflow: hidden;
+
+  .dimmer {
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  &.muted {
+    .dimmer {
+      display: block;
+    }
+  }
+
+  video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.peers-1, .peers-focused {
+  .video-container {
+    height: 100vh;
+
+    video {
+      position: fixed;
+    }
+  }
+}

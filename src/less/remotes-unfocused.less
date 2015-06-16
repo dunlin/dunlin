@@ -1,0 +1,73 @@
+//
+// Unfocused remotes
+#remotes-unfocused {
+  position: fixed;
+  top: 2em;
+  left: 2em;
+  z-index: @z-index-top;
+
+  .video-container {
+    position: relative;
+    display: inline-block;
+    width: @avatar-size;
+    height: @avatar-size;
+    border-radius: 100%;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 0 solid #fff;
+
+    .dimmer {
+      border-radius: 100%;
+    }
+
+    .triggers {
+      width: auto;
+    }
+
+    .trigger {
+      top: 0;
+      left: 0;
+      position: absolute;
+
+      transform: translate(-50%, -50%);
+
+      background: none;
+      padding: 0;
+      margin: 0;
+
+      border: none;
+      color: white;
+    }
+
+    &:hover {
+      border-width: .5em;
+
+      .focus-trigger {
+        opacity: 1;
+      }
+    }
+
+    .mute-trigger {
+      display: none;
+    }
+
+    video {
+      position: static;
+      transform: none;
+      max-width: 135%;
+      margin-left: -17%;
+    }
+
+    + .video-container {
+      margin-left: 1em;
+    }
+  }
+}
+
+.peers-0,
+.peers-1 {
+  .focus-trigger {
+    display: none;
+  }
+}
