@@ -1,6 +1,7 @@
 var $ = require('jquery'),
     SimpleWebRTC = require('simplewebrtc'),
-    videoContainerTemplate = require('../templates/video-container.hbs');
+    videoContainerTemplate = require('../templates/video-container.hbs'),
+    room = window.location.pathname.split('/').pop();
 
 module.exports = function () {
     var webrtc = new SimpleWebRTC({

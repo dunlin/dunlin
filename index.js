@@ -30,8 +30,7 @@ app.get('/', function (req, res, next) {
 
 app.get('/:room', function (req, res, next) {
     res.send(layout({
-        'connectionServer': process.env.SIGNALING_SERVER,
-        'room': req.room
+        'connectionServer': process.env.SIGNALING_SERVER
     }));
     next();
 });
