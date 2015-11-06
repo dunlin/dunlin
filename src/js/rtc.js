@@ -1,9 +1,12 @@
 var $ = require('jquery'),
     SimpleWebRTC = require('simplewebrtc'),
     videoContainerTemplate = require('../templates/video-container.hbs'),
+    notification = require('./notification'),
     room = window.location.pathname.split('/').pop();
 
 module.exports = function () {
+    'use strict';
+
     var webrtc = new SimpleWebRTC({
             url: '//' + connectionServer,
             autoRequestMedia: true, // immediately ask for camera access
@@ -23,8 +26,7 @@ module.exports = function () {
     });
 
     webrtc.on('videoAdded', function (video, peer) {
-        var $remotes = $('#remotes'),
-            $videoContainer = $(videoContainerTemplate());
+        var $videoContainer = $(videoContainerTemplate());
 
         $videoContainer.append(video);
         streams.add(peer.id, video, $videoContainer);
@@ -32,6 +34,11 @@ module.exports = function () {
 
     webrtc.on('videoRemoved', function (video, peer) {
         streams.remove(peer.id);
+    });
+
+    webrtc.connection.on('noSlotsAvailable', function (msg) {
+        notification.title(msg.title);
+        notification.message(msg.message);
     });
 
     return webrtc;
