@@ -25,7 +25,7 @@
     "build-js": "mkdir -p client/js && ./node_modules/.bin/browserify source/js/client.js -o client/js/client.js -t hbsfy",
     "build-less": "mkdir -p client/css && ./node_modules/.bin/lessc source/less/main.less client/css/main.css",
     "copy-fontawesome": "mkdir -p client/css && cp ./node_modules/font-awesome/css/font-awesome.min.css ./client/css/font-awesome.min.css && cp -R ./node_modules/font-awesome/fonts/ ./client/fonts/",
-    "test": "echo \"No test specified\""
+    "test": "./node_modules/.bin/karma start karma.conf.coverage.js"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,8 @@
   },
   "devDependencies": {
     "browser-sync": "^2.9.12",
+    "browserify-istanbul": "0.2.1",
+    "chai": "3.4.0",
     "del": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
@@ -41,8 +43,18 @@
     "gulp-less": "^3.0.3",
     "gulp-nodemon": "^2.0.4",
     "gulp-plumber": "^1.0.1",
+    "karma": "0.13.15",
+    "karma-browserify": "4.4.0",
+    "karma-chai-sinon": "0.1.5",
+    "karma-chrome-launcher": "0.2.1",
+    "karma-coverage": "0.5.3",
+    "karma-mocha": "0.2.0",
+    "karma-phantomjs2-launcher": "0.3.2",
+    "mocha": "2.3.3",
     "run-sequence": "^1.1.4",
     "signaling-server": "git://github.com/dunlin/signaling-server.git",
+    "sinon": "1.17.2",
+    "sinon-chai": "2.8.0",
     "supervisor": "^0.6.0",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^2.4.0"
