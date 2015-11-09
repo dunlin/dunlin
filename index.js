@@ -8,7 +8,8 @@ var express = require('express'),
     moniker = require('moniker'),
     names = moniker.generator([moniker.adjective, moniker.noun]),
     layout = handlebars.compile(fs.readFileSync(path.resolve(__dirname, 'src/templates/client.hbs'), 'utf8')),
-    port = parseInt(process.env.HTTP_PORT) || 8001;
+    port = parseInt(process.env.HTTP_PORT) || 8001,
+    signalingServer = process.env.SIGNALING_SERVER || 'localhost:8080';
 
 app.use(expressLogger.logger({
     winstonInstance: logger,
@@ -30,7 +31,7 @@ app.get('/', function (req, res, next) {
 
 app.get('/:room', function (req, res, next) {
     res.send(layout({
-        'connectionServer': process.env.SIGNALING_SERVER
+        'connectionServer': signalingServer
     }));
     next();
 });
@@ -42,3 +43,4 @@ app.use(expressLogger.errorLogger({
 app.listen(port);
 
 logger.info('Http server is listening on port ' + port);
+logger.info('Using signaling server ' + signalingServer);
