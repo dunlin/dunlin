@@ -7,7 +7,7 @@ var express = require('express'),
     expressLogger = require('express-winston'),
     moniker = require('moniker'),
     names = moniker.generator([moniker.adjective, moniker.noun]),
-    layout = handlebars.compile(fs.readFileSync(path.resolve(__dirname, 'src/templates/client.hbs'), 'utf8')),
+    layout = handlebars.compile(fs.readFileSync(path.resolve(__dirname, 'source/templates/client.hbs'), 'utf8')),
     port = parseInt(process.env.HTTP_PORT) || 8001,
     signalingServer = process.env.SIGNALING_SERVER || 'localhost:8080';
 

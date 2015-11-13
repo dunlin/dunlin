@@ -19,6 +19,13 @@ module.exports = function () {
 
         streams = require('./streams.js')($('#remotes'));
 
+    function fail(message) {
+        return function (peer) {
+            streams.get(peer.id).node.addClass('status-error')
+                .find('.status').text(message);
+        }
+    }
+
     // we have to wait until it's ready
     webrtc.on('readyToCall', function () {
         // you can name it anything
@@ -26,7 +33,7 @@ module.exports = function () {
     });
 
     webrtc.on('videoAdded', function (video, peer) {
-        var $videoContainer = $(videoContainerTemplate());
+        var $videoContainer = $(videoContainerTemplate({status: 'Connecting'}));
 
         $videoContainer.append(video);
         streams.add(peer.id, video, $videoContainer);
@@ -40,6 +47,9 @@ module.exports = function () {
         notification.title(msg.title);
         notification.message(msg.message);
     });
+
+    webrtc.on('iceFailed', fail('Connection to peer failed.'));
+    webrtc.on('connectivityError', fail('Connection from peer failed.'));
 
     return webrtc;
 };

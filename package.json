@@ -20,24 +20,30 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "npm run build & npm run watch-js & npm run watch-less & npm run watch-server",
-    "watch-less": "./node_modules/nodemon/bin/nodemon.js --watch src/less/*.less --ext less --exec 'npm run build-less'",
-    "watch-js": "./node_modules/nodemon/bin/nodemon.js --watch src/js/*.js --watch index.js --ext less --exec 'npm run build-js'",
-    "watch-server": "./node_modules/nodemon/bin/nodemon.js --ignore client index.js",
     "postinstall": "npm run build",
     "build": "npm run build-js & npm run build-less & npm run copy-fontawesome & wait",
-    "build-js": "./node_modules/.bin/browserify src/js/client.js -o client/client.js -t hbsfy",
-    "build-less": "./node_modules/.bin/lessc src/less/style.less client/css/style.css",
-    "develop-less": "./node_modules/.bin/supervisor -w src -e less -n exit  -x npm -- run build-less",
-    "develop-js": "./node_modules/.bin/watchify src/js/client.js -o client/client.js -t hbsfy --debug --verbose",
-    "copy-fontawesome": "mkdir -p client/css && cp ./node_modules/font-awesome/css/font-awesome.min.css ./client/css/font-awesome.css && cp -R ./node_modules/font-awesome/fonts/ ./client/fonts/"
+    "build-js": "mkdir -p client/js && ./node_modules/.bin/browserify source/js/client.js -o client/js/client.js -t hbsfy",
+    "build-less": "mkdir -p client/css && ./node_modules/.bin/lessc source/less/main.less client/css/main.css",
+    "copy-fontawesome": "mkdir -p client/css && cp ./node_modules/font-awesome/css/font-awesome.min.css ./client/css/font-awesome.min.css && cp -R ./node_modules/font-awesome/fonts/ ./client/fonts/"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/dunlin/dunlin.git"
   },
   "devDependencies": {
+    "browser-sync": "^2.9.12",
+    "del": "^2.0.2",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-cssnano": "^2.0.0",
+    "gulp-exec": "^2.1.2",
+    "gulp-less": "^3.0.3",
+    "gulp-nodemon": "^2.0.4",
+    "gulp-plumber": "^1.0.1",
+    "run-sequence": "^1.1.4",
+    "signaling-server": "git://github.com/dunlin/signaling-server.git",
     "supervisor": "^0.6.0",
+    "vinyl-source-stream": "^1.1.0",
     "watchify": "^2.4.0"
   }
 }

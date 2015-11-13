@@ -35,6 +35,9 @@ module.exports = function (remotes) {
                 streams.peers[id].stream.get(0).play();
             }
         },
+        get: function (id) {
+            return streams.peers[id]
+        },
         remove: function (id) {
             var peer = streams.peers[id];
 
