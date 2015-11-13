@@ -1,6 +1,6 @@
 var $ = require('jquery');
 
-updateBodyPeers = function (peers) {
+var updateBodyPeers = function (peers) {
     $(document.body).attr('class', function (i, attr) {
         attr = attr || 'peers-0';
         return attr.replace(/peers-\S+/g, 'peers-' + peers);
@@ -49,10 +49,11 @@ module.exports = function (remotes) {
 
             if (!streams.focused) {
                 streams.updateDom();
-            } else {
-                if (streams.length < 2) {
-                    streams.peers[streams.focused].unfocus();
-                }
+                return;
+            }
+
+            if (streams.length < 2) {
+                streams.peers[streams.focused].unfocus();
             }
         },
         updateLength: function () {
@@ -76,7 +77,7 @@ module.exports = function (remotes) {
                 video.stream.prop('muted', true);
                 video.node.addClass('muted');
                 video.muted = true;
-            }
+            };
         },
         unmute: function (id) {
             return function () {
@@ -89,17 +90,16 @@ module.exports = function (remotes) {
                 video.stream.prop('muted', false);
                 video.node.removeClass('muted');
                 video.muted = false;
-            }
+            };
         },
         focus: function (id) {
             return function () {
-                var video = streams.peers[id];
+                var video = streams.peers[id],
+                    bench;
 
-                if (video.focused) {
-                    return;
-                }
+                if (video.focused) return;
 
-                var bench = $('#remotes-unfocused');
+                bench = $('#remotes-unfocused');
 
                 streams.focused = id;
 
@@ -119,17 +119,16 @@ module.exports = function (remotes) {
 
                 updateBodyPeers('focused');
                 streams.playAll();
-            }
+            };
         },
         unfocus: function (id) {
             return function () {
-                var video = streams.peers[id];
+                var video = streams.peers[id],
+                    remotes;
 
-                if (!video.focused) {
-                    return;
-                }
+                if (!video.focused) return;
 
-                var remotes = $('#remotes');
+                remotes = $('#remotes');
 
                 streams.focused = undefined;
 
@@ -146,7 +145,7 @@ module.exports = function (remotes) {
 
                 streams.updateDom();
                 streams.playAll();
-            }
+            };
         },
         registerEvents: function (video) {
             video.node.find('.mute-trigger').on('click', function () {
