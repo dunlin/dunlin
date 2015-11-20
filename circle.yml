@@ -1,0 +1,9 @@
+machine:
+  node:
+    version: 4.1.0
+
+deployment:
+  master:
+    - ssh admin@video.dunlin.io ./dunlin-scripts/stop-container.sh "dunlin-video-server"
+    - ssh admin@video.dunlin.io ./dunlin-scripts/build-dunlin.sh
+    - ssh admin@video.dunlin.io ./dunlin-scripts/start-container.sh "dunlin-video-server"
