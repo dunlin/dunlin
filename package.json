@@ -24,7 +24,8 @@
     "build": "npm run build-js & npm run build-less & npm run copy-fontawesome & wait",
     "build-js": "mkdir -p client/js && ./node_modules/.bin/browserify source/js/client.js -o client/js/client.js -t hbsfy",
     "build-less": "mkdir -p client/css && ./node_modules/.bin/lessc source/less/main.less client/css/main.css",
-    "copy-fontawesome": "mkdir -p client/css && cp ./node_modules/font-awesome/css/font-awesome.min.css ./client/css/font-awesome.min.css && cp -R ./node_modules/font-awesome/fonts/ ./client/fonts/"
+    "copy-fontawesome": "mkdir -p client/css && cp ./node_modules/font-awesome/css/font-awesome.min.css ./client/css/font-awesome.min.css && cp -R ./node_modules/font-awesome/fonts/ ./client/fonts/",
+    "test": "echo \"No test specified\""
   },
   "repository": {
     "type": "git",
