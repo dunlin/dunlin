@@ -8,6 +8,9 @@ var gulp = require('gulp'),
     nodemon = require('gulp-nodemon'),
     plumber = require('gulp-plumber'),
 
+    svgstore = require('gulp-svgstore'),
+    svgmin = require('gulp-svgmin'),
+
     sequence = require('run-sequence'),
     source = require('vinyl-source-stream'),
     browserify = require('browserify'),
@@ -39,6 +42,14 @@ gulp.task('optstyles', function () {
         .pipe(gulp.dest('client/css/'));
 });
 
+// Create SVG sprite & insert it into client.hbs
+gulp.task('svgstore', function () {
+    return gulp.src('source/icons/*.svg')
+        .pipe(svgmin())
+        .pipe(svgstore())
+        .pipe(gulp.dest('client/icons/'));
+});
+
 gulp.task('browserify', function () {
     return browserify({
             entries: ['./source/js/client.js'],
@@ -49,18 +60,6 @@ gulp.task('browserify', function () {
         .pipe(plumber())
         .pipe(source('client.js'))
         .pipe(gulp.dest('client/js/'));
-});
-
-gulp.task('statics', ['font-awesome', 'fonts']);
-
-gulp.task('font-awesome', function () {
-    return gulp.src('node_modules/font-awesome/css/font-awesome.min.css')
-        .pipe(gulp.dest('client/css'));
-});
-
-gulp.task('fonts', function () {
-    return gulp.src('node_modules/font-awesome/fonts/*')
-        .pipe(gulp.dest('client/fonts/'));
 });
 
 gulp.task('server:signaling', function () {
@@ -83,7 +82,7 @@ gulp.task('server:dunlin', function () {
 });
 
 gulp.task('build', function (done) {
-    sequence('clean', ['styles', 'browserify', 'statics'], 'optstyles', done);
+    sequence('clean', ['styles', 'browserify', 'optstyles', 'svgstore'], done);
 });
 
 gulp.task('server', ['server:signaling', 'server:dunlin']);
