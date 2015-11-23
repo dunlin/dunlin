@@ -1,0 +1,69 @@
+//
+// Current user video
+#avatar {
+  position: fixed;
+  top: @frame-spacer;
+  right: @frame-spacer;
+  width: @avatar-size;
+  height: @avatar-size;
+  overflow: hidden;
+  background-color: @avatar-background-color;
+  border-radius: 100%;
+  cursor: pointer;
+  z-index: @z-index-top;
+
+  video {
+    max-width: 135%;
+    margin-left: -17%;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 100%;
+    height: 100%;
+    width: 100%;
+    border: 0 solid @ui-contrast-color;
+    transition: all @trigger-change-timing;
+  }
+
+  &.muted {
+    .mute-icon {
+      display: block;
+      color: @trigger-active-color;
+    }
+
+    video {
+      opacity: 0.5;
+    }
+  }
+
+  .mute-icon {
+    color: @ui-contrast-color;
+    text-align: center;
+    opacity: 0;
+    transition: all @trigger-change-timing;
+    .transform-centering();
+  }
+
+  &:hover {
+    &:after {
+      border-width: @hover-border;
+    }
+
+    .mute-icon {
+      opacity: 1;
+    }
+  }
+}
+
+.peers-1, .peers-0 {
+  #avatar {
+    width: @avatar-size-large;
+    height: @avatar-size-large;
+  }
+}

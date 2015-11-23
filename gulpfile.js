@@ -71,12 +71,12 @@ gulp.task('server:signaling', function () {
 gulp.task('server:dunlin', function () {
     nodemon({
         script: 'index.js',
-        ext: 'less js',
+        watch: 'source',
+        ext: 'js hbs less',
         env: {
             'SIGNALING_SERVER': 'localhost:8080',
             'NODE_ENV': 'development'
-        },
-        ignore: ['client', 'gulpfile.js']
+        }
     }).on('restart', function () {
         sequence('build');
     })

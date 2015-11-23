@@ -1,0 +1,47 @@
+//
+// Layout
+@frame-spacer: 2em;
+@hover-border: 0.5em;
+
+@avatar-size:         10em;
+@avatar-size-large:   15em;
+@trigger-size:        8em;
+@trigger-size-large:  10em;
+
+//
+// Colors
+@ui-color:                rgb(27,188,155);
+@ui-contrast-color:       rgb(255,255,255);
+@avatar-background-color: rgb(17,17,17);
+@trigger-active-color:    rgb(204,0,0);
+@text-color:              @ui-contrast-color;
+
+//
+// Fonts
+@font-stack:        -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+@base-font-size:    14px;
+@base-line-height:  1.5;
+
+//
+// Timings & functions
+@trigger-change-timing: 0.2s;
+@logo-change-timing:    0.75s;
+
+//
+// Z-Index
+@z-index-logo:    2;
+@z-index-trigger: 10;
+@z-index-top:     100;
+
+//
+// Mixins
+.global-animation-bezier() {
+  animation-timing-function: cubic-bezier(0.4, 0.52, 0.18, 0.96);
+}
+
+.transform-centering() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

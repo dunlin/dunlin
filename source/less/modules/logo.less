@@ -1,0 +1,78 @@
+//
+// Intro sequencing of logo & message
+
+//
+// Non idle logo hovering
+.logo-container {
+  position: fixed;
+  bottom: 1em;
+  left: 1em;
+  height: 5em;
+  width: 5em;
+  opacity: 0.2;
+  z-index: @z-index-logo;
+  transition: all @logo-change-timing;
+}
+
+.logo {
+  max-width: 100%;
+  max-height: 100%;
+  fill: currentColor;
+  vertical-align: middle;
+}
+
+//
+// Intro text message
+.welcome-message {
+  font-size: 3em;
+  font-weight: normal;
+  animation-name: fadeout;
+  animation-duration: 1.5s;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;
+}
+
+//
+// Spinning logo
+.peers-0 {
+  .logo-container {
+    height: 15em;
+    width: 15em;
+    opacity: 0.4;
+    .transform-centering();
+  }
+
+  .animation-idle {
+    animation-name: spinner;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-delay: 2s;
+    transform-style: preserve-3d;
+    .global-animation-bezier();
+  }
+}
+
+//
+// Animations
+@keyframes spinner {
+  0% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(180deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

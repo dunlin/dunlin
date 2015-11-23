@@ -1,0 +1,55 @@
+//
+// Horizontals
+@media screen and (orientation:landscape) {
+  .peers-2,
+  .peers-3 {
+    position: absolute;
+
+    .video-container {
+      flex: 0 0 50%;
+      max-width: 50%;
+      height: 100vh;
+    }
+  }
+
+  .peers-3 {
+    .video-container {
+      flex: 0 0 33.333%;
+      max-width: 33.333%;
+    }
+  }
+
+  .peers-4 {
+    position: absolute;
+
+    .video-container {
+      flex: 0 0 50%;
+      max-width: 50%;
+      height: 50vh;
+    }
+  }
+}
+
+//
+// Verticals
+@media screen and (orientation:portrait) {
+  #remotes {
+    min-height: 100vh;
+  }
+
+  &.peers-2,
+  &.peers-3 {
+    .video-container {
+      flex: 0 0 100%;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  &.peers-3 {
+    .video-container {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+}
