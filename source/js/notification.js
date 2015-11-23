@@ -1,28 +1,41 @@
+/* eslint-env: browser */
+/* globals require, module */
 var $ = require('jquery'),
-    $body = $(document.body),
     $template = $(require('../templates/notification.hbs')());
 
-module.exports = (function () {
+module.exports = function (container) {
     'use strict';
 
-    var $notification = $('#notification'),
+    var $container = $(container),
+        $notification = $('#notification'),
         $title, $message;
 
     if ($notification.length === 0) {
         $title = $template.find('.title');
         $message = $template.find('.message');
-        $body.append($template);
+        $container.append($template);
     } else {
         $title = $notification.find('.title');
         $message = $notification.find('.message');
     }
 
     return {
-        title: function (text) {
+        title: function (text, classes) {
+            $title.attr('class').split(' ').forEach(function (className) {
+                if (className === 'title') {
+                    return;
+                }
+                $title.removeClass(className);
+            });
+
+            if (classes !== undefined) {
+                $title.addClass(classes);
+            }
+
             $title.html(text);
         },
         message: function (text) {
             $message.html(text);
         }
     };
-}());
+};
