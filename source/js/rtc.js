@@ -1,7 +1,7 @@
 var $ = require('jquery'),
     SimpleWebRTC = require('simplewebrtc'),
     videoContainerTemplate = require('../templates/video-container.hbs'),
-    notification = require('./notification'),
+    notification = require('./notification')($('#notifications')),
     room = window.location.pathname.split('/').pop();
 
 module.exports = function () {
@@ -19,11 +19,11 @@ module.exports = function () {
 
         streams = require('./streams.js')($('#remotes'));
 
-    function fail(message) {
+    function fail (message) {
         return function (peer) {
             streams.get(peer.id).node.addClass('status-error')
                 .find('.status').text(message);
-        }
+        };
     }
 
     // we have to wait until it's ready
@@ -33,7 +33,7 @@ module.exports = function () {
     });
 
     webrtc.on('videoAdded', function (video, peer) {
-        var $videoContainer = $(videoContainerTemplate({status: 'Connecting'}));
+        var $videoContainer = $(videoContainerTemplate());
 
         $videoContainer.append(video);
         streams.add(peer.id, video, $videoContainer);
