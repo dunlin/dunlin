@@ -1,3 +1,4 @@
+/* eslint-env node */
 'use strict';
 
 var gulp = require('gulp'),
@@ -78,7 +79,7 @@ gulp.task('server:dunlin', function () {
         }
     }).on('restart', function () {
         sequence('build');
-    })
+    });
 });
 
 gulp.task('build', function (done) {
