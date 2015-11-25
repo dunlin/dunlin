@@ -5,20 +5,18 @@
 // Non idle logo hovering
 .logo-container {
   position: fixed;
-  bottom: 1em;
-  left: 1em;
-  height: 5em;
-  width: 5em;
+  bottom: @frame-spacer;
+  left: @frame-spacer;
+  height: @logo-size;
+  width: @logo-size;
   opacity: 0.2;
   z-index: @z-index-logo;
   transition: all @logo-change-timing;
 }
 
-.logo {
-  max-width: 100%;
-  max-height: 100%;
-  fill: currentColor;
-  vertical-align: middle;
+.icon-logo {
+  height: @logo-size;
+  width: @logo-size;
 }
 
 //
@@ -36,10 +34,16 @@
 // Spinning logo
 .peers-0 {
   .logo-container {
-    height: 15em;
-    width: 15em;
+    height: @idle-logo-size;
+    width: @idle-logo-size;
     opacity: 0.4;
     .transform-centering();
+    position: fixed;
+  }
+
+  .icon-logo {
+    height: @idle-logo-size;
+    width: @idle-logo-size;
   }
 
   .animation-idle {

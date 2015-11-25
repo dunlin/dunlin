@@ -1,7 +1,15 @@
 <div class="video-container">
   <div class="triggers">
-    <div class="trigger mute-trigger"><span class="mute-icon fa fa-volume-off fa-4x"></span></div>
-    <div class="trigger focus-trigger"><span class="focus-icon fa fa-expand fa-4x"></span></div>
+    <div class="trigger mute-trigger">
+      <svg class="icon icon-4x icon-mute-sound" role="img">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="icons/icons.svg#icon-mute-sound"></use>
+      </svg>
+    </div>
+    <div class="trigger focus-trigger">
+      <svg class="icon icon-4x icon-full-screen" role="img">
+        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="icons/icons.svg#icon-full-screen"></use>
+      </svg>
+    </div>
   </div>
   <div class="status">{{status}}</div>
   <div class="dimmer"></div>

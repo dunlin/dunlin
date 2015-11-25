@@ -7,7 +7,6 @@
     "browserify": "^9.0.3",
     "express": "^4.12.0",
     "express-winston": "^0.3.1",
-    "font-awesome": "^4.3.0",
     "handlebars": "^3.0.1",
     "hbsfy": "^2.2.1",
     "jquery": "^2.1.3",
@@ -21,10 +20,9 @@
   "scripts": {
     "start": "node index.js",
     "postinstall": "npm run build",
-    "build": "npm run build-js & npm run build-less & npm run copy-fontawesome & wait",
+    "build": "npm run build-js & npm run build-less & wait",
     "build-js": "mkdir -p client/js && ./node_modules/.bin/browserify source/js/client.js -o client/js/client.js -t hbsfy",
     "build-less": "mkdir -p client/css && ./node_modules/.bin/lessc source/less/main.less client/css/main.css",
-    "copy-fontawesome": "mkdir -p client/css && cp ./node_modules/font-awesome/css/font-awesome.min.css ./client/css/font-awesome.min.css && cp -R ./node_modules/font-awesome/fonts/ ./client/fonts/",
     "test": "./node_modules/.bin/karma start karma.conf.coverage.js"
   },
   "repository": {
@@ -43,6 +41,8 @@
     "gulp-less": "^3.0.3",
     "gulp-nodemon": "^2.0.4",
     "gulp-plumber": "^1.0.1",
+    "gulp-svgmin": "^1.2.0",
+    "gulp-svgstore": "^5.0.5",
     "karma": "0.13.15",
     "karma-browserify": "4.4.0",
     "karma-chai-sinon": "0.1.5",
