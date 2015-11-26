@@ -1,4 +1,5 @@
-var $ = require('jquery');
+var $ = require('jquery'),
+    icons = require('./icons')('remote');
 
 var updateBodyPeers = function (peers) {
     $(document.body).attr('class', function (i, attr) {
@@ -80,6 +81,7 @@ module.exports = function (remotes) {
                 video.stream.prop('muted', true);
                 video.node.addClass('muted');
                 video.muted = true;
+                icons($(video.node).find('.icon-sound'), 'muted');
             };
         },
         unmute: function (id) {
@@ -93,6 +95,7 @@ module.exports = function (remotes) {
                 video.stream.prop('muted', false);
                 video.node.removeClass('muted');
                 video.muted = false;
+                icons($(video.node).find('.icon-sound'), 'unmuted');
             };
         },
         focus: function (id) {
@@ -108,6 +111,7 @@ module.exports = function (remotes) {
 
                 video.node.addClass('focused');
                 video.focused = true;
+                icons($('.icon-layout'), 'layout-focused');
 
                 Object.keys(streams.peers).forEach(function (key) {
                     if (key === id) {
@@ -116,6 +120,7 @@ module.exports = function (remotes) {
 
                     streams.peers[key].focused = false;
                     bench.append(streams.peers[key].node.removeClass('focused'));
+                    icons($(streams.peers[key].node).find('.icon-layout'), 'layout-default');
                 });
 
                 $('#remotes').append(video.node);
@@ -137,6 +142,7 @@ module.exports = function (remotes) {
 
                 video.node.removeClass('focused');
                 video.focused = false;
+                icons($('.icon-layout'), 'layout-default');
 
                 Object.keys(streams.peers).forEach(function (key) {
                     streams.peers[key].node.detach();

@@ -63,6 +63,11 @@ gulp.task('browserify', function () {
         .pipe(gulp.dest('client/js/'));
 });
 
+gulp.task('images', function () {
+    return gulp.src('source/images/*')
+        .pipe(gulp.dest('client/images/'));
+});
+
 gulp.task('server:signaling', function () {
     return gulp.src('client/')
         .pipe(exec('VIDEO_HOST=localhost:8001 node node_modules/signaling-server/index'));
@@ -83,7 +88,7 @@ gulp.task('server:dunlin', function () {
 });
 
 gulp.task('build', function (done) {
-    sequence('clean', ['styles', 'browserify', 'optstyles', 'svgstore'], done);
+    sequence('clean', ['images', 'styles', 'browserify', 'optstyles', 'svgstore'], done);
 });
 
 gulp.task('server', ['server:signaling', 'server:dunlin']);
