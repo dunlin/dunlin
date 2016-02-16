@@ -1,8 +1,8 @@
-FROM node:4
+FROM node:5.5
 
 ENV NODE_ENV="production"
 
-ADD . /dunlin
+COPY . /dunlin
 
 WORKDIR /dunlin
 
