@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>Dunlin.io</title>
-
+  <link rel="icon" type="image/png" href="images/logo.png">
   <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body class="peers-0">
@@ -14,7 +14,9 @@
 
 <div id="avatar" title="Mute microphone">
   <video id="local" autoplay="autoplay" muted="true" class="local"></video>
-  <svg class="icon icon-4x icon-mute-mic" role="img"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="icons/icons.svg#icon-mute-mic"></use></svg>
+  <svg class="icon icon-4x icon-mute-mic" role="img">
+    <use id="avatar-icon" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="icons/icons.svg#icon-mute-mic"></use>
+  </svg>
 </div>
 
 <div id="remotes-unfocused"></div>
